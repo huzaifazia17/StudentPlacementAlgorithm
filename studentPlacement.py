@@ -80,19 +80,13 @@ def findBestMatching(studentPref, schoolPref):
     i = 0
     for student, studentchoice in studentPref.items():
         print(studentchoice)
-        print("ya3nee")
         # if studentchoice[i] in schoolList:
-        print("working0")
         if (studentchoice[i] in schoolList):
             matchingList[student] = studentchoice[i]
             schoolList.remove(studentchoice[i])
-            print("working1")
         elif (studentchoice[i] not in schoolList):
-            print("working2")
             for school, schoolchoice in schoolPref.items():
-                print("working3")
                 if (student == schoolchoice[i] and studentchoice[i] in schoolList):
-                    print("working4")
                     matchingList[student] = school
                     schoolList.remove(school)
 
