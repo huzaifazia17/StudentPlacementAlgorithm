@@ -1,0 +1,11 @@
+Tom,Sara,Ali,Ying,Amit,Megan,Alan,Layla,Jane,Alex
+UBC,UofO,QU,MU,UofT,YU,MU,UofT,OT,UofW
+UofT,QU,UofT,OT,YU,UofW,YU,UofA,UofO,UofO
+UofW,UofT,CU,UofA,UofA,UBC,CU,MU,UofA,OT
+UofA,MU,OT,UBC,OT,UofT,UofO,CU,MU,MU
+QU,UofA,UofO,QU,UBC,QU,UofA,YU,YU,YU
+OT,UofW,MU,CU,UofW,UofO,UofT,UBC,UofT,UofT
+MU,OT,UofA,UofW,QU,MU,UBC,QU,QU,UBC
+UofO,YU,YU,YU,UofO,OT,QU,UofW,UBC,CU
+YU,CU,UBC,UofT,MU,CU,OT,OT,UofW,QU
+CU,UBC,UofW,UofO,CU,UofA,UofW,UofO,CU,UofA

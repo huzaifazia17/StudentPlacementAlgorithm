@@ -1,0 +1,11 @@
+UofO,UofA,OT,UofT,UBC,QU,YU,CU,MU,UofW
+Tom,Ying,Alex,Alan,Tom,Jane,Sara,Ying,Tom,Jane
+Alex,Alex,Jane,Amit,Layla,Sara,Jane,Tom,Alan,Ali
+Sara,Megan,Megan,Ying,Alex,Amit,Alex,Alan,Layla,Amit
+Jane,Amit,Ying,Megan,Megan,Tom,Ying,Layla,Megan,Megan
+Layla,Sara,Sara,Ali,Jane,Ali,Ali,Ali,Sara,Layla
+Ying,Jane,Layla,Sara,Sara,Alan,Layla,Megan,Alex,Ying
+Amit,Tom,Ali,Tom,Ali,Ying,Alan,Sara,Jane,Tom
+Alan,Alan,Tom,Alex,Alan,Layla,Megan,Amit,Ali,Alex
+Ali,Layla,Amit,Layla,Ying,Megan,Tom,Jane,Amit,Sara
+Megan,Ali,Alan,Jane,Amit,Alex,Amit,Alex,Ying,Alan
