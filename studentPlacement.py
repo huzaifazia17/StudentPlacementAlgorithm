@@ -7,7 +7,7 @@ def readPreferences(filename):
     preferences = {}
     with open(filename) as f:
         keys = f.readline().split(",")
-        for line in f:
+        for line in f: #TEST
             line = line[:-1]  # Remove \n from end of line
             values = line.split(",")
             for i in range(len(keys)):
