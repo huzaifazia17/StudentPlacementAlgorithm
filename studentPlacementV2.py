@@ -1,9 +1,37 @@
-schoolPreferences = "school-preferences.txt"
-studentPreferences = "student-preferences.txt"
-
+# First networkx library is imported 
+# along with matplotlib
+import networkx as nx
+import matplotlib.pyplot as plt
+   
+  
+# Defining a Class
+class GraphVisualization:
+   
+    def __init__(self):
+          
+        # visual is a list which stores all 
+        # the set of edges that constitutes a
+        # graph
+        self.visual = []
+          
+    # addEdge function inputs the vertices of an
+    # edge and appends it to the visual list
+    def addEdge(self, a, b):
+        temp = [a, b]
+        self.visual.append(temp)
+          
+    # In visualize function G is an object of
+    # class Graph given by networkx G.add_edges_from(visual)
+    # creates a graph with a given list
+    # nx.draw_networkx(G) - plots the graph
+    # plt.show() - displays the graph
+    def visualize(self):
+        G = nx.Graph()
+        G.add_edges_from(self.visual)
+        nx.draw_networkx(G, node_size=1000)
+        plt.show()
 
 def readPreferences(filename):
-
     preferences = {}
     with open(filename) as f:
         keys = f.readline().split(",")
@@ -20,37 +48,22 @@ def readPreferences(filename):
                     preferences[key] = [value]
     return preferences
 
+def generateGraph(graph, dictionary):
+    for key, valueList in dictionary.items():
+        for value in valueList:
+            graph.addEdge(key, value)
+
+schoolPreferences = "school-preferences.txt"
+studentPreferences = "student-preferences.txt"
+
 # Passes filenames to function which returns the generated dictionary
 schoolPref = readPreferences(schoolPreferences)
 studentPref = readPreferences(studentPreferences)
+    
+G = GraphVisualization()
 
-print(studentPref)
-print()
-print(schoolPref)
-
-
-# Check if students first choice is available, if not check if some shcool has that student as first choice, else iterate
+generateGraph(G, schoolPref)
+# generateGraph(G, studentPref)
 
 
-def findBestMatching(studentPref, schoolPref):
-    studentsList = list(studentPref.keys())
-    schoolList = list(schoolPref.keys())
-    # print(schoolList)
-    matchingList = {}
-    i = 0
-    for student, studentchoice in studentPref.items():
-        print(studentchoice)
-        # if studentchoice[i] in schoolList:
-        if (studentchoice[i] in schoolList):
-            matchingList[student] = studentchoice[i]
-            schoolList.remove(studentchoice[i])
-        elif (studentchoice[i] not in schoolList):
-            for school, schoolchoice in schoolPref.items():
-                if (student == schoolchoice[i] and studentchoice[i] in schoolList):
-                    matchingList[student] = school
-                    schoolList.remove(school)
-
-    return matchingList
-
-
-print("Matching: ", findBestMatching(studentPref, schoolPref))
+G.visualize()
