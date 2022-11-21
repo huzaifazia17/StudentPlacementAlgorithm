@@ -7,6 +7,7 @@ def readPreferences(filename):
     preferences = {}
     with open(filename) as f:
         keys = f.readline().split(",")
+        keys = keys[:-1]  # Remove \n from end of line
         for line in f: #TEST
             line = line[:-1]  # Remove \n from end of line
             values = line.split(",")
@@ -19,54 +20,13 @@ def readPreferences(filename):
                     preferences[key] = [value]
     return preferences
 
-
-# def findBestMatching(studentPreferences, schoolPreferences):
-#     """Finds the best matching of students to schools.
-
-#     Parameters:
-#         studentPreferences: a dictionary mapping students to lists of schools
-#         schoolPreferences: a dictionary mapping schools to lists of students
-
-#     Returns:
-#         A dictionary mapping students to schools
-#     """
-#     matching = {}
-#     for student in studentPreferences:
-#         for school in getSchoolPreferences(student, studentPreferences, schoolPreferences):
-#             if school not in matching:
-#                 matching[student] = school
-#                 break
-#     return matching
-
-
-# def getSchoolPreferences(student, studentPreferences, schoolPreferences):
-#     """Returns a list of schools in order of preference for a student.
-
-#     Parameters:
-#         student: the name of the student
-#         studentPreferences: a dictionary mapping students to lists of schools
-#         schoolPreferences: a dictionary mapping schools to lists of students
-
-#     Returns:
-#         A list of schools in order of preference for the student
-#     """
-#     schools = []
-#     for school in studentPreferences[student]:
-#         if student in schoolPreferences[school]:
-#             schools.append(school)
-#     return schools
-
-# Doing the following to remove \n from last key in dictionary because i could not find any other way to do it
+# Passes filenames to function which returns the generated dictionary
 schoolPref = readPreferences(schoolPreferences)
-schoolPref["UofW"] = schoolPref["UofW\n"]
-schoolPref.pop("UofW\n")
 studentPref = readPreferences(studentPreferences)
-studentPref["Alex"] = studentPref["Alex\n"]
-studentPref.pop("Alex\n")
-# print(schoolPref)
-#print(" ")
-#print(" ")
-# print(studentPref)
+
+print(studentPref)
+print()
+print(schoolPref)
 
 
 # Check if students first choice is available, if not check if some shcool has that student as first choice, else iterate
