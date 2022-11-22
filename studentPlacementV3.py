@@ -1,36 +1,38 @@
 import pprint
 
 def createDictionary(filename):
-    preferences = {}
+    dictionary = {}
     with open(filename) as f:
         keys = f.readline().split(",")
-        keys = keys[:-1]  # Remove \n from end of line
-        for line in f: #TEST
+        keys[-1] = keys[-1].replace("\n", "")   # Remove \n from end of line
+        for line in f:
             line = line[:-1]  # Remove \n from end of line
             values = line.split(",")
             for i in range(len(keys)):
                 key = keys[i]
                 value = values[i]
-                if key in preferences:
-                    preferences[key].append(value)
+                if key in dictionary:
+                    dictionary[key].append(value)
                 else:
-                    preferences[key] = [value]
-    return preferences
+                    dictionary[key] = [value]
+    return dictionary
 
 def printDictionary(dictionary):
     for key, value in dictionary.items() :
         print(key, value)
 
-schoolPreferencesFile = "school-preferences.txt"
+universityPreferencesFile = "school-preferences.txt"
 studentPreferencesFile = "student-preferences.txt"
 
 # Passes filenames to function which returns the generated dictionary
-schoolPref = createDictionary(schoolPreferencesFile)
+universityPref = createDictionary(universityPreferencesFile)
 studentPref = createDictionary(studentPreferencesFile)
 
-printDictionary(schoolPref)
-print()
-printDictionary(studentPref)
+# printDictionary(schoolPref)
+# printDictionary(studentPref)
+
+students = list(studentPref.keys())
+universities = list(universityPref.keys())
 
 # Stores the final descisions
 matches = {
@@ -42,7 +44,40 @@ matches = {
     'Megan': '',
     'Alan': '',
     'Layla': '',
-    'Jane': ''
-    }
+    'Jane': '',
+    'Alex': ''
+}
+
+availableStudents = list(students)
+availableUniversities = list(universities)
+
+key_list = list(matches.keys())
+
+while len(availableStudents) > 0:
+    for student in key_list:
+        for university in studentPref[student]:
+            if university not in list(matches.values()):
+                matches[student] = university
+                availableStudents.remove(student)
+                print('{} is linked to {}!'.format(student, university))
+                break
+            elif university in list(matches.values()):
+                current_suitor = list(matches.keys())[list(matches.values()).index(university)]
+                u_list = universityPref.get(university)
+                if u_list.index(student) < u_list.index(current_suitor):
+                    matches[student] = university
+                    # print("AVAILABLE STUDENTS: ", availableStudents)
+                    # print("STUDENT: ", student)
+                    availableStudents.remove(student)
+                    matches[current_suitor] = ''
+                    availableStudents.append(current_suitor)
+                    print('{} was previously paired to {} but now is paired with {}! '.format(university, current_suitor, student))
+                    break
+            print(matches)
+
+
+print()
+print(matches)
+
 
 
