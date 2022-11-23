@@ -19,7 +19,7 @@ def createDictionary(filename):
 
 def printDictionary(dictionary):
     for key, value in dictionary.items() :
-        print(key, value)
+        print(key, "-->",value)
 
 universityPreferencesFile = "school-preferences.txt"
 studentPreferencesFile = "student-preferences.txt"
@@ -27,9 +27,6 @@ studentPreferencesFile = "student-preferences.txt"
 # Passes filenames to function which returns the generated dictionary
 universityPref = createDictionary(universityPreferencesFile)
 studentPref = createDictionary(studentPreferencesFile)
-
-# printDictionary(schoolPref)
-# printDictionary(studentPref)
 
 students = list(studentPref.keys())
 universities = list(universityPref.keys())
@@ -56,28 +53,25 @@ key_list = list(matches.keys())
 while len(availableStudents) > 0:
     for student in key_list:
         for university in studentPref[student]:
-            if university not in list(matches.values()):
-                matches[student] = university
-                availableStudents.remove(student)
-                print('{} is linked to {}!'.format(student, university))
-                break
-            elif university in list(matches.values()):
-                current_suitor = list(matches.keys())[list(matches.values()).index(university)]
-                u_list = universityPref.get(university)
-                if u_list.index(student) < u_list.index(current_suitor):
+            if student in list(availableStudents):
+                if university not in list(matches.values()):
                     matches[student] = university
-                    # print("AVAILABLE STUDENTS: ", availableStudents)
-                    # print("STUDENT: ", student)
                     availableStudents.remove(student)
-                    matches[current_suitor] = ''
-                    availableStudents.append(current_suitor)
-                    print('{} was previously paired to {} but now is paired with {}! '.format(university, current_suitor, student))
+                    print('{} is linked to {}!'.format(student, university))
                     break
-            print(matches)
-
+                elif university in list(matches.values()):
+                    current_suitor = list(matches.keys())[list(matches.values()).index(university)]
+                    u_list = universityPref.get(university)
+                    if u_list.index(student) < u_list.index(current_suitor):
+                        matches[student] = university
+                        availableStudents.remove(student)
+                        matches[current_suitor] = ''
+                        availableStudents.append(current_suitor)
+                        print('{} was previously paired to {} but now is paired with {}! '.format(university, current_suitor, student))
+                        break
 
 print()
-print(matches)
+printDictionary(matches)
 
 
 
