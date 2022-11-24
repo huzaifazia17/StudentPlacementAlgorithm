@@ -63,7 +63,7 @@ decisions = createEmptyDictionaryFromKeyList(availableStudents)
 for i in range (0, len(studentPref.keys())):
     for university in universityPref.keys():
         currStudent = universityPref[university][i]
-        print(currStudent)
+        print("Current Student:", currStudent)
 
         if((currStudent in availableStudents) and (university in availableUniversities)):
             if(studentPref[currStudent][0] == university):
@@ -71,21 +71,28 @@ for i in range (0, len(studentPref.keys())):
                 # Remove all instances of the student and university from both dictionaries
                 availableStudents.remove(currStudent)
                 availableUniversities.remove(university)
-
-                # studentPref[currStudent] = studentPref[currStudent].remove(university)
-                # universityPref[university] = universityPref[university].remove(currStudent)
-
-
                 
+                tempList = list(studentPref[currStudent])
+                tempList.remove(university)
+                studentPref[currStudent] = tempList
+                
+                tempList = list(universityPref[university])
+                tempList.remove(currStudent)
+                universityPref[university] = tempList
+
                 studentPrefTEMP = deleteValue(studentPrefTEMP, university)
                 universityPrefTEMP = deleteValue(universityPrefTEMP, currStudent)
+
+
                 del studentPrefTEMP[currStudent]
                 del universityPrefTEMP[university]
 
                 print()
                 print()
+                # printDictionary(studentPrefTEMP)
                 printDictionary(studentPrefTEMP)
                 print()
+                # printDictionary(universityPrefTEMP)
                 printDictionary(universityPrefTEMP)
                 print()
                 print()
