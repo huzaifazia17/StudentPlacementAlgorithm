@@ -1,4 +1,3 @@
-import pprint
 import copy
 
 def createDictionary(filename):
@@ -39,6 +38,12 @@ def deleteValue(dictionary, lookUp):
                 dictionary[key] = valueList
     return dictionary
 
+def removeValueFromDictionary(dictionary, value):
+    for key, valueList in dictionary.items():
+        valueList.remove(value)
+        dictionary[key] = valueList
+    return dictionary
+
 
 # Passes filenames to function which returns the generated dictionary
 universityPref = createDictionary("school-preferences.txt")
@@ -50,55 +55,41 @@ universityPrefTEMP = copy.deepcopy(universityPref)
 availableStudents = list(studentPref.keys())
 availableUniversities = list(universityPref.keys())
 
-# printDictionary(universityPref)
-# printDictionary(studentPref)
-# print(students)
-# print(universities)
-# studentPref['Tom'][0] = 'UofT'
-# studentPref['Tom'][1] = 'UBC'
-# printDictionary(studentPref)
-
 decisions = createEmptyDictionaryFromKeyList(availableStudents)
 
-for i in range (0, len(studentPref.keys())):
-    for university in universityPref.keys():
-        currStudent = universityPref[university][i]
-        print("Current Student:", currStudent)
+while(len(availableStudents) > 0):
+    for i in range (0, len(studentPref.keys())):
+        for university in universityPref.keys():
+            if(i < len(availableStudents)):
+                currStudent = universityPref[university][i]
+                if((currStudent in availableStudents) and (university in availableUniversities)):
+                    if(studentPref[currStudent][0] == university):
 
-        if((currStudent in availableStudents) and (university in availableUniversities)):
-            if(studentPref[currStudent][0] == university):
-                decisions[currStudent] = university
-                # Remove all instances of the student and university from both dictionaries
-                availableStudents.remove(currStudent)
-                availableUniversities.remove(university)
-                
-                tempList = list(studentPref[currStudent])
-                tempList.remove(university)
-                studentPref[currStudent] = tempList
-                
-                tempList = list(universityPref[university])
-                tempList.remove(currStudent)
-                universityPref[university] = tempList
+                        decisions[currStudent] = university
+                        
+                        # Remove all instances of the student and university from both dictionaries
+                        availableStudents.remove(currStudent)
+                        availableUniversities.remove(university)
 
-                studentPrefTEMP = deleteValue(studentPrefTEMP, university)
-                universityPrefTEMP = deleteValue(universityPrefTEMP, currStudent)
+                        studentPref = removeValueFromDictionary(studentPref, university)
+                        universityPref = removeValueFromDictionary(universityPref, currStudent)
 
+                        # studentPrefTEMP = deleteValue(studentPrefTEMP, university)
+                        # universityPrefTEMP = deleteValue(universityPrefTEMP, currStudent)
+                        # del studentPrefTEMP[currStudent]
+                        # del universityPrefTEMP[university]
 
-                del studentPrefTEMP[currStudent]
-                del universityPrefTEMP[university]
-
-                print()
-                print()
-                # printDictionary(studentPrefTEMP)
-                printDictionary(studentPrefTEMP)
-                print()
-                # printDictionary(universityPrefTEMP)
-                printDictionary(universityPrefTEMP)
-                print()
-                print()
-                
-                printDictionary(decisions)
-                print()
+                        # print()
+                        # print()
+                        # printDictionary(studentPrefTEMP)
+                        # printDictionary(studentPref)
+                        # print()
+                        # printDictionary(universityPrefTEMP)
+                        # printDictionary(universityPref)
+                        # print()
+                        # print()
+                        printDictionary(decisions)
+                        print()
     
 
 
