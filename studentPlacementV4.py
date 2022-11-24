@@ -90,6 +90,8 @@ while(len(availableStudents) > 0):
                         # print()
                         printDictionary(decisions)
                         print()
+                        # i = 0
+                        # university = availableUniversities[0]
     
 
 
