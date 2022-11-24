@@ -44,25 +44,17 @@ def removeValueFromDictionary(dictionary, value):
         dictionary[key] = valueList
     return dictionary
 
+def run():
+    global universityPref
+    global studentPref
+    global studentPrefTEMP
+    global universityPrefTEMP
+    global availableStudents
+    global availableUniversities
+    global decisions
 
-# Passes filenames to function which returns the generated dictionary
-universityPref = createDictionary("school-preferences.txt")
-studentPref = createDictionary("student-preferences.txt")
-
-studentPrefTEMP = copy.deepcopy(studentPref)
-universityPrefTEMP = copy.deepcopy(universityPref)
-
-availableStudents = list(studentPref.keys())
-availableUniversities = list(universityPref.keys())
-
-decisions = createEmptyDictionaryFromKeyList(availableStudents)
-
-while(len(availableStudents) > 0):
     for i in range (0, len(studentPref.keys())):
-        
-        print("I-------------------------------", i)
         for university in universityPref.keys():
-            print("I: ", i)
             if(i < len(availableStudents)):
                 currStudent = universityPref[university][i]
                 if((currStudent in availableStudents) and (university in availableUniversities)):
@@ -91,10 +83,26 @@ while(len(availableStudents) > 0):
                         # printDictionary(universityPref)
                         # print()
                         # print()
-                        printDictionary(decisions)
-                        print()
-                        i = 0
+                        run()
                         # university = availableUniversities[0]
+
+# Passes filenames to function which returns the generated dictionary
+universityPref = createDictionary("school-preferences.txt")
+studentPref = createDictionary("student-preferences.txt")
+
+studentPrefTEMP = copy.deepcopy(studentPref)
+universityPrefTEMP = copy.deepcopy(universityPref)
+
+availableStudents = list(studentPref.keys())
+availableUniversities = list(universityPref.keys())
+
+decisions = createEmptyDictionaryFromKeyList(availableStudents)
+
+run()
+
+printDictionary(decisions)
+
+
     
 
 
