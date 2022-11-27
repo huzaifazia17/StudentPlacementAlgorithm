@@ -1,6 +1,6 @@
 Tom,Sara,Ali,Ying,Amit,Megan,Alan,Layla,Jane,Alex
-UBC,UofO,QU,MU,UofT,YU,MU,UofT,OT,UofW
-UofT,QU,UofT,OT,YU,UofW,YU,UofA,UofO,UofO
+UofT,UofO,QU,MU,UofT,YU,MU,UofT,OT,UofW
+UBC,QU,UofT,OT,YU,UofW,YU,UofA,UofO,UofO
 UofW,UofT,CU,UofA,UofA,UBC,CU,MU,UofA,OT
 UofA,MU,OT,UBC,OT,UofT,UofO,CU,MU,MU
 QU,UofA,UofO,QU,UBC,QU,UofA,YU,YU,YU
